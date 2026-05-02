@@ -1,0 +1,199 @@
+import { useParams, useNavigate } from "react-router-dom"
+import { motion } from "framer-motion"
+import projects from "../data/projects"
+
+const SectionCard = ({ title, content }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }}
+    className="bg-[#0f0f0f] p-6 rounded-2xl border border-gray-800 
+               hover:border-gray-600 hover:-translate-y-1 
+               transition duration-300"
+  >
+    <h2 className="text-xl font-semibold mb-4">{title}</h2>
+
+    <ul className="space-y-2 text-gray-400 text-sm leading-relaxed">
+      {content.map((point, index) => (
+        <li key={index} className="flex items-start gap-2">
+          <span className="mt-1 text-gray-500">•</span>
+          <span>{point}</span>
+        </li>
+      ))}
+    </ul>
+  </motion.div>
+)
+
+const ProjectDetails = () => {
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const project = projects[id]
+
+  if (!project) {
+    return <div className="p-10 text-white">Project not found</div>
+  }
+
+  return (
+    <div className="relative min-h-screen bg-[#050505] text-white px-6 py-20 overflow-hidden">
+
+      {/* Background */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-black via-[#0a0a0a] to-black" />
+      <div className="pointer-events-none absolute -top-40 -left-40 w-[400px] h-[400px] bg-purple-600 opacity-20 blur-[120px] rounded-full" />
+      <div className="pointer-events-none absolute -bottom-40 -right-40 w-[400px] h-[400px] bg-indigo-600 opacity-20 blur-[120px] rounded-full" />
+
+      {/* Back Button */}
+      <button
+        onClick={() => {
+          sessionStorage.setItem("scrollTo", "projects")
+          navigate("/")
+        }}
+        className="relative z-10 mb-10 text-gray-400 hover:text-white transition"
+      >
+        ← Back to Projects
+      </button>
+
+      <div className="max-w-5xl mx-auto space-y-20">
+
+        {/* 🔥 Header (Animated) */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-5xl md:text-6xl font-bold tracking-tight 
+                       bg-gradient-to-r from-white to-gray-400 
+                       bg-clip-text text-transparent"
+          >
+            {project.title}
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mt-6 text-gray-400 max-w-2xl leading-relaxed text-lg"
+          >
+            {project.description}
+          </motion.p>
+
+          {/* Tech */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mt-6 flex flex-wrap gap-2"
+          >
+            {project.tech.map((t, i) => (
+              <span
+                key={i}
+                className="bg-gray-800 px-3 py-1 rounded-md text-sm text-gray-300"
+              >
+                {t}
+              </span>
+            ))}
+          </motion.div>
+
+          {/* Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-6 flex gap-4"
+          >
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noreferrer"
+              className="px-5 py-2 bg-white text-black rounded-lg text-sm font-medium hover:bg-gray-200 transition"
+            >
+              View Code
+            </a>
+
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noreferrer"
+              className="px-5 py-2 border border-gray-600 rounded-lg text-sm hover:border-gray-400 transition"
+            >
+              Live Demo
+            </a>
+          </motion.div>
+        </motion.div>
+
+        {/* Video */}
+        {project.video && (
+          <div>
+            <video
+              src={project.video}
+              controls
+              className="rounded-xl border border-gray-800 w-full"
+            />
+          </div>
+        )}
+
+        {/* Sections */}
+        <div className="grid md:grid-cols-2 gap-8">
+          <SectionCard title="Problem" content={project.problem} />
+          <SectionCard title="Approach" content={project.approach} />
+          <SectionCard title="Architecture" content={project.architecture} />
+          <SectionCard title="Challenges" content={project.challenges} />
+        </div>
+
+        {/* Impact */}
+        {project.impact && (
+          <div className="bg-[#111111] border border-gray-800 rounded-2xl p-6">
+            <h2 className="text-xl font-semibold mb-3">Impact</h2>
+            <p className="text-gray-300 leading-relaxed">
+              {project.impact}
+            </p>
+          </div>
+        )}
+
+        {/* Screenshots */}
+        {project.images && (
+          <div>
+            <h2 className="text-2xl font-semibold mb-12">
+              Product Walkthrough
+            </h2>
+
+            <div className="space-y-20">
+              {project.images.map((item, i) => (
+                <div
+                  key={i}
+                  className={`grid md:grid-cols-2 gap-10 items-center ${
+                    i % 2 !== 0 ? "md:[&>div:first-child]:order-2" : ""
+                  }`}
+                >
+                  <div className="rounded-xl overflow-hidden border border-gray-800 hover:border-gray-600 transition">
+                    <img
+                      src={item.src}
+                      alt={item.title}
+                      className="w-full h-full object-cover hover:scale-105 transition duration-300"
+                    />
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+      </div>
+    </div>
+  )
+}
+
+export default ProjectDetails
