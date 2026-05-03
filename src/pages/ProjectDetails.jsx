@@ -2,28 +2,33 @@ import { useParams, useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
 import projects from "../data/projects"
 
-const SectionCard = ({ title, content }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
-    className="bg-[#0f0f0f] p-6 rounded-2xl border border-gray-800 
-               hover:border-gray-600 hover:-translate-y-1 
-               transition duration-300"
-  >
-    <h2 className="text-xl font-semibold mb-4">{title}</h2>
+/* ---------- SAFE SECTION CARD ---------- */
+const SectionCard = ({ title, content }) => {
+  if (!content || content.length === 0) return null
 
-    <ul className="space-y-2 text-gray-400 text-sm leading-relaxed">
-      {content.map((point, index) => (
-        <li key={index} className="flex items-start gap-2">
-          <span className="mt-1 text-gray-500">•</span>
-          <span>{point}</span>
-        </li>
-      ))}
-    </ul>
-  </motion.div>
-)
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="bg-[#0f0f0f] p-6 rounded-2xl border border-gray-800 
+                 hover:border-gray-600 hover:-translate-y-1 
+                 transition duration-300"
+    >
+      <h2 className="text-xl font-semibold mb-4">{title}</h2>
+
+      <ul className="space-y-2 text-gray-400 text-sm leading-relaxed">
+        {content.map((point, index) => (
+          <li key={index} className="flex items-start gap-2">
+            <span className="mt-1 text-gray-500">•</span>
+            <span>{point}</span>
+          </li>
+        ))}
+      </ul>
+    </motion.div>
+  )
+}
 
 const ProjectDetails = () => {
   const { id } = useParams()
@@ -35,7 +40,7 @@ const ProjectDetails = () => {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#050505] text-white px-6 py-20 overflow-hidden">
+    <div className="relative min-h-screen bg-[#050505] text-white px-6 py-20 overflow-x-hidden">
 
       {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-black via-[#0a0a0a] to-black" />
@@ -48,84 +53,76 @@ const ProjectDetails = () => {
           sessionStorage.setItem("scrollTo", "projects")
           navigate("/")
         }}
-        className="relative z-10 mb-10 text-gray-400 hover:text-white transition"
+       className="mb-10 text-sm text-gray-400 hover:text-white 
+           transition duration-200 flex items-center gap-2
+           hover:-translate-x-1"
       >
         ← Back to Projects
       </button>
 
       <div className="max-w-5xl mx-auto space-y-20">
 
-        {/* 🔥 Header (Animated) */}
+        {/* ---------- HEADER ---------- */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6 }}
         >
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-5xl md:text-6xl font-bold tracking-tight 
-                       bg-gradient-to-r from-white to-gray-400 
-                       bg-clip-text text-transparent"
-          >
+          <h1 className="text-5xl md:text-6xl font-bold leading-[1.2] pb-2
+               bg-gradient-to-r from-white to-gray-400 
+               bg-clip-text text-transparent">
             {project.title}
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="mt-6 text-gray-400 max-w-2xl leading-relaxed text-lg"
-          >
+          <p className="mt-6 text-gray-400 max-w-2xl leading-relaxed text-lg">
             {project.description}
-          </motion.p>
+          </p>
 
-          {/* Tech */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="mt-6 flex flex-wrap gap-2"
-          >
-            {project.tech.map((t, i) => (
-              <span
-                key={i}
-                className="bg-gray-800 px-3 py-1 rounded-md text-sm text-gray-300"
-              >
-                {t}
-              </span>
-            ))}
-          </motion.div>
+          {/* Tech Stack */}
+          {project.tech && (
+            <div className="mt-6 flex flex-wrap gap-2">
+              {project.tech.map((t, i) => (
+                <span
+                  key={i}
+                  className="bg-gray-800 px-3 py-1 rounded-md text-sm text-gray-300"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          )}
 
           {/* Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="mt-6 flex gap-4"
-          >
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noreferrer"
-              className="px-5 py-2 bg-white text-black rounded-lg text-sm font-medium hover:bg-gray-200 transition"
-            >
-              View Code
-            </a>
+          <div className="mt-6 flex gap-4 flex-wrap">
+            {project.github && project.github !== "#" && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+                className="px-5 py-2 border border-gray-600 rounded-lg text-sm 
+           hover:border-gray-400 hover:bg-white/5 
+           transition duration-200"
+              >
+                View Code
+              </a>
+            )}
 
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noreferrer"
-              className="px-5 py-2 border border-gray-600 rounded-lg text-sm hover:border-gray-400 transition"
-            >
-              Live Demo
-            </a>
-          </motion.div>
+            {project.live && project.live !== "#" && (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noreferrer"
+                className="px-5 py-2 bg-white text-black rounded-lg font-medium 
+           shadow-md hover:shadow-lg 
+           hover:bg-gray-200 transition duration-200"
+              >
+                Live Demo
+              </a>
+            )}
+          </div>
         </motion.div>
 
-        {/* Video */}
+        {/* ---------- VIDEO ---------- */}
         {project.video && (
           <div>
             <video
@@ -136,15 +133,24 @@ const ProjectDetails = () => {
           </div>
         )}
 
-        {/* Sections */}
-        <div className="grid md:grid-cols-2 gap-8">
-          <SectionCard title="Problem" content={project.problem} />
-          <SectionCard title="Approach" content={project.approach} />
-          <SectionCard title="Architecture" content={project.architecture} />
-          <SectionCard title="Challenges" content={project.challenges} />
-        </div>
+        {/* ---------- SECTION GRID ---------- */}
+        {(project.problem ||
+          project.approach ||
+          project.architecture ||
+          project.challenges) ? (
+          <div className="grid md:grid-cols-2 gap-8">
+            <SectionCard title="Problem" content={project.problem} />
+            <SectionCard title="Approach" content={project.approach} />
+            <SectionCard title="Architecture" content={project.architecture} />
+            <SectionCard title="Challenges" content={project.challenges} />
+          </div>
+        ) : (
+          <div className="bg-[#0f0f0f] border border-gray-800 rounded-2xl p-6 text-center text-gray-400">
+            🚧 Detailed breakdown coming soon. This project is currently in progress.
+          </div>
+        )}
 
-        {/* Impact */}
+        {/* ---------- IMPACT ---------- */}
         {project.impact && (
           <div className="bg-[#111111] border border-gray-800 rounded-2xl p-6">
             <h2 className="text-xl font-semibold mb-3">Impact</h2>
@@ -154,8 +160,8 @@ const ProjectDetails = () => {
           </div>
         )}
 
-        {/* Screenshots */}
-        {project.images && (
+        {/* ---------- SCREENSHOTS ---------- */}
+        {project.images && project.images.length > 0 && (
           <div>
             <h2 className="text-2xl font-semibold mb-12">
               Product Walkthrough
