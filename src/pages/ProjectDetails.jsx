@@ -120,16 +120,7 @@ const ProjectDetails = () => {
           </div>
         </motion.div>
 
-        {/* ---------- VIDEO ---------- */}
-        {project.video && (
-          <div>
-            <video
-              src={project.video}
-              controls
-              className="rounded-xl border border-gray-800 w-full"
-            />
-          </div>
-        )}
+       
 
         {/* ---------- SECTION GRID ---------- */}
         {(project.problem ||
