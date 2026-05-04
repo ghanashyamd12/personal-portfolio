@@ -6,27 +6,17 @@ const Navbar = () => {
                  backdrop-blur-md bg-black/40 
                  border-b border-white/10"
     >
-      <div className="max-w-6xl mx-auto px-6 w-full flex justify-between items-center">
+      <div className="max-w-6xl mx-auto px-4 md:px-8 w-full flex justify-between items-center">
 
-        {/* Logo / Name */}
-        <h1 className="text-white font-semibold tracking-wide cursor-pointer">
+        <h1 className="text-white font-semibold tracking-wide whitespace-nowrap text-sm md:text-base cursor-pointer">
           Ghanashyam D
         </h1>
 
-        {/* Links */}
-        <div className="flex gap-8 text-sm text-gray-400">
-          <a href="#projects" className="hover:text-white transition duration-200">
-            Projects
-          </a>
-          <a href="#skills" className="hover:text-white transition duration-200">
-            Skills
-          </a>
-          <a href="#about" className="hover:text-white transition duration-200">
-            About
-          </a>
-          <a href="#contact" className="hover:text-white transition duration-200">
-            Contact
-          </a>
+        <div className="flex flex-wrap md:flex-nowrap justify-end gap-3 md:gap-6 lg:gap-8 text-xs md:text-sm text-gray-400 max-w-md">
+          <a href="#projects" className="hover:text-white transition duration-200 hover:-translate-y-[1px]">Projects</a>
+          <a href="#skills" className="hover:text-white transition duration-200 hover:-translate-y-[1px]">Skills</a>
+          <a href="#about" className="hover:text-white transition duration-200 hover:-translate-y-[1px]">About</a>
+          <a href="#contact" className="hover:text-white transition duration-200 hover:-translate-y-[1px]">Contact</a>
         </div>
 
       </div>
@@ -34,4 +24,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default Navbar;

@@ -82,15 +82,16 @@ const Hero = () => {
             View Projects
           </button>
 
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="px-6 py-3 border border-gray-500 rounded-lg 
-                       hover:border-gray-300 transition duration-200 
-                       hover:scale-105 active:scale-95"
+         <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noreferrer"
+          className="px-6 py-3 border border-gray-500 text-gray-300 rounded-lg font-medium
+                      hover:border-white hover:text-white
+                      transition duration-200
+                     hover:scale-105 active:scale-95"
           >
-            Resume
+             Resume
           </a>
         </motion.div>
 

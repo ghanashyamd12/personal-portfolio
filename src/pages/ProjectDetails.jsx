@@ -68,11 +68,9 @@ const ProjectDetails = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-5xl md:text-6xl font-bold leading-[1.2] pb-2
-               bg-gradient-to-r from-white to-gray-400 
-               bg-clip-text text-transparent">
-            {project.title}
-          </h1>
+          <h1 className="text-4xl md:text-6xl font-bold leading-[1.2] pb-2 text-white">
+  {project.title}
+</h1>
 
           <p className="mt-6 text-gray-400 max-w-2xl leading-relaxed text-lg">
             {project.description}
