@@ -31,21 +31,23 @@ const projects = [
     ],
 
     challenges: [
-      "Maintaining low latency across multiple services.",
-      "Ensuring reliable communication between backend and ML service.",
-      "Managing consistent data flow across distributed components.",
-      "Handling container orchestration and environment configs on AWS.",
-    ],
+  "Maintaining low latency across multiple services.",
+  "Ensuring reliable communication between backend and ML service.",
+  "Managing consistent data flow across distributed components.",
+  "Handling container orchestration and environment configs on AWS.",
+  "Fixing frontend API connection issues caused by changing EC2 public IPs.",
+  "Optimizing deployment performance when running multiple Docker services on limited EC2 resources.",
+],
 
     impact:
       "Demonstrates a scalable approach to real-time fraud detection, similar to systems used in financial platforms, with live monitoring, ML-based classification, and production-style deployment on AWS.",
 
-    video: "/fraudguard-demo.mp4",
+   
 
     github:
       "https://github.com/ghanashyamd12/FraudGuard---Transaction-Monitoring-System",
 
-    live: "http://65.1.114.40:5173",
+    live: "http://43.205.62.212:5173",
 
     images: [
       {
@@ -76,16 +78,7 @@ const projects = [
     ],
   },
 
-  {
-    title: "Intelligent Learning Path Generator",
-    description:
-      "Full-stack system that generates personalized learning roadmaps and tracks user progress dynamically.",
-    tech: ["React", "Node.js", "MongoDB"],
-    github: "#",
-    live: "#",
-    status: "In Progress",
-  },
-
+  
   {
     
   title: "API Rate Limiter",
@@ -176,6 +169,28 @@ challenges: [
   ],
   
   },
+
+  {
+    title: "SkillPath - Intelligent Learning Path Generator",
+    description:
+      "Full-stack system that generates personalized learning roadmaps and tracks user progress dynamically.",
+    tech: [
+  "React",
+  "Vite",
+  "Tailwind CSS",
+  "React Flow",
+  "Node.js",
+  "Express.js",
+  "MongoDB",
+  "Mongoose",
+  "JWT Authentication",
+  "REST APIs"
+],
+    github: "#",
+    live: "#",
+    status: "In Progress",
+  },
+
 ]
 
 export default projects
