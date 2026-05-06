@@ -104,35 +104,36 @@ const projects = [
   ],
 
   problem: [
-    "Modern APIs need protection against abuse, spam traffic, and excessive request bursts.",
-    "Traditional fixed-window limiting can lead to uneven traffic spikes and poor request distribution.",
-    "Need for a scalable backend system capable of handling dynamic request throttling per user.",
-    "Required a mechanism to simulate production-style API gateway behavior with distributed state management.",
-  ],
+  "Modern APIs need protection against spam requests and traffic abuse.",
+  "Without rate limiting, excessive requests can overload backend services.",
+  "Different users often require different request limits based on usage plans.",
+  "The system needed to handle burst traffic smoothly instead of blocking requests abruptly.",
+  "The goal was to simulate how real-world API gateways manage request throttling.",
+],
 
-  approach: [
-    "Implemented the Token Bucket algorithm for smooth and burst-tolerant rate limiting.",
-    "Used Spring Boot interceptors to enforce request filtering before controller execution.",
-    "Integrated Redis for fast in-memory distributed token storage and refill tracking.",
-    "Created plan-based throttling with configurable FREE and PREMIUM user limits.",
-    "Built a lightweight frontend dashboard to visualize request usage and token refill behavior in real time.",
-  ],
+approach: [
+  "Implemented the Token Bucket algorithm for smooth and flexible rate limiting.",
+  "Used Spring Boot interceptors to validate requests before reaching controller logic.",
+  "Integrated Redis for fast token storage and real-time request tracking.",
+  "Created separate request limits for FREE and PREMIUM users.",
+  "Built a frontend dashboard to visualize token usage and rate limit behavior in real time.",
+],
 
-  architecture: [
-    "React frontend sends requests with API keys using custom headers.",
-    "Spring Boot interceptor validates API keys and enforces request throttling.",
-    "Rate limiter service handles token refill calculation and request validation logic.",
-    "Redis stores remaining tokens and last refill timestamps for each user.",
-    "Frontend visualizes plan details, remaining requests, request status, and token refill progress.",
-  ],
+architecture: [
+  "React frontend sends requests using API keys through custom headers.",
+  "Spring Boot interceptor checks request limits before processing API calls.",
+  "Rate limiter service handles token refill calculations and request validation.",
+  "Redis stores remaining tokens and refill timestamps for each user.",
+  "Frontend displays request status, remaining tokens, and plan details dynamically.",
+],
 
-  challenges: [
-    "Designing accurate token refill calculations based on elapsed request time.",
-    "Managing distributed token state efficiently using Redis.",
-    "Preventing inconsistent token deduction during rapid consecutive requests.",
-    "Structuring interceptor-based filtering cleanly without tightly coupling business logic.",
-    "Visualizing backend rate limiting behavior clearly through the frontend interface.",
-  ],
+challenges: [
+  "Designing accurate token refill logic based on elapsed time.",
+  "Managing token state efficiently using Redis.",
+  "Handling rapid consecutive requests without incorrect token deductions.",
+  "Keeping rate limiting logic cleanly separated from business logic.",
+  "Visualizing backend rate limiting behavior clearly through the frontend.",
+],
 
   impact:
     "Demonstrates a production-style backend system similar to API gateway traffic control mechanisms used in scalable distributed systems, showcasing backend architecture, request throttling, Redis-based state management, and real-time observability.",
