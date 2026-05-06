@@ -3,29 +3,71 @@ import { motion } from "framer-motion"
 const skills = [
   {
     title: "Languages",
-    items: ["JavaScript", "Python", "C++", "Java"],
+    items: ["Java", "JavaScript", "Python", "C++"],
   },
+
   {
     title: "Frontend",
-    items: ["React.js", "Tailwind CSS", "Framer Motion"],
+    items: [
+      "React.js",
+      "Tailwind CSS",
+      "Framer Motion",
+      "HTML",
+      "CSS",
+    ],
   },
+
   {
     title: "Backend",
-    items: ["Node.js", "Express.js", "Flask", "REST APIs"],
+    items: [
+      "Node.js",
+      "Express.js",
+      "Flask",
+      "Spring Boot",
+      "REST APIs",
+    ],
   },
+
   {
-    title: "Database & ML",
-    items: ["PostgreSQL", "MongoDB", "Scikit-learn", "Pandas", "NumPy"],
+    title: "Databases",
+    items: [
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+    ],
   },
+
   {
-    title: "Tools & Concepts",
+    title: "Machine Learning",
+    items: [
+      "Scikit-learn",
+      "Pandas",
+      "NumPy",
+    ],
+  },
+
+  {
+    title: "Tools & Cloud",
     items: [
       "Docker",
-      "AWS (EC2)",
+      "AWS EC2",
       "Git",
+      "GitHub",
+      "Vercel",
+      "Render",
+    ],
+  },
+
+  {
+    title: "Concepts",
+    items: [
+      "REST API Design",
       "MVC Architecture",
-      "JWT Auth",
+      "JWT Authentication",
       "System Design",
+      "Rate Limiting",
+      "Caching",
+      "Microservices",
     ],
   },
 ]
@@ -36,29 +78,44 @@ const SkillsSection = () => {
       id="skills"
       className="max-w-6xl mx-auto px-6 py-32 scroll-mt-24"
     >
-      <motion.h2
+
+      {/* Heading */}
+      <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="text-3xl md:text-4xl font-semibold mb-12"
+        className="mb-14"
       >
-        Skills
-      </motion.h2>
 
-      <div className="grid md:grid-cols-3 gap-8">
+        <h2 className="text-3xl md:text-4xl font-semibold text-white">
+          Skills
+        </h2>
+
+        <p className="text-gray-400 mt-4 max-w-2xl leading-relaxed">
+          Technologies, tools, and engineering concepts I use to build
+          scalable backend systems, full-stack applications, and
+          machine learning powered solutions.
+        </p>
+
+      </motion.div>
+
+      {/* Skills Grid */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
         {skills.map((category, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
+            transition={{ delay: i * 0.08 }}
             viewport={{ once: true }}
-            className="bg-[#0f0f0f] p-6 rounded-2xl border border-gray-800 
-                       hover:border-gray-600 hover:-translate-y-1 
+            className="bg-[#0f0f0f] p-6 rounded-2xl border border-gray-800
+                       hover:border-gray-700 hover:-translate-y-1
                        transition duration-300"
           >
-            <h3 className="text-lg font-semibold mb-4">
+
+            <h3 className="text-lg font-semibold mb-5 text-white">
               {category.title}
             </h3>
 
@@ -66,15 +123,20 @@ const SkillsSection = () => {
               {category.items.map((skill, idx) => (
                 <span
                   key={idx}
-                  className="bg-gray-800 px-3 py-1 rounded-md text-sm text-gray-300"
+                  className="bg-[#181818] border border-gray-700
+                             px-3 py-1 rounded-md text-sm text-gray-300
+                             hover:border-gray-500 transition duration-200"
                 >
                   {skill}
                 </span>
               ))}
             </div>
+
           </motion.div>
         ))}
+
       </div>
+
     </section>
   )
 }
