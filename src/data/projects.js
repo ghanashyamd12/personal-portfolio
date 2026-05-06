@@ -186,7 +186,7 @@ challenges: [
   "JWT Authentication",
   "REST APIs"
 ],
-    github: "#",
+    github: "https://github.com/ghanashyamd12/Intelligent-learning-path-generator",
     live: "#",
     status: "In Progress",
   },
