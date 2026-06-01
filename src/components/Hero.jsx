@@ -83,7 +83,7 @@ const Hero = () => {
           </button>
 
          <a
-          href="/GHANASHYAM D.pdf"
+          href="/resume.pdf"
           target="_blank"
           rel="noreferrer"
           className="px-6 py-3 border border-gray-500 text-gray-300 rounded-lg font-medium
