@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 const skills = [
   {
     title: "Languages",
-    items: ["Java", "JavaScript", "Python", "C++"],
+    items: ["JavaScript", "Python", "Java", "C++"],
   },
 
   {
@@ -34,27 +34,31 @@ const skills = [
       "PostgreSQL",
       "MongoDB",
       "Redis",
+      "ChromaDB",
     ],
   },
 
   {
-    title: "Machine Learning",
+    title: "Machine Learning & AI",
     items: [
       "Scikit-learn",
       "Pandas",
       "NumPy",
+      "RAG",
+      "Sentence Embeddings",
     ],
   },
 
   {
-    title: "Tools & Cloud",
+    title: "Tools & Frameworks",
     items: [
+      "LangChain",
+      "Hugging Face",
+      "Ollama",
       "Docker",
       "AWS EC2",
       "Git",
       "GitHub",
-      "Vercel",
-      "Render",
     ],
   },
 
@@ -62,12 +66,12 @@ const skills = [
     title: "Concepts",
     items: [
       "REST API Design",
-      "MVC Architecture",
       "JWT Authentication",
+      "Vector Search",
+      "Information Retrieval",
       "System Design",
       "Rate Limiting",
       "Caching",
-      "Microservices",
     ],
   },
 ]
@@ -93,9 +97,7 @@ const SkillsSection = () => {
         </h2>
 
         <p className="text-gray-400 mt-4 max-w-2xl leading-relaxed">
-          Technologies, tools, and engineering concepts I use to build
-          scalable backend systems, full-stack applications, and
-          machine learning powered solutions.
+          Technologies, frameworks, and AI tools I use to build backend systems, full-stack applications, machine learning solutions, and Retrieval-Augmented Generation (RAG) applications.
         </p>
 
       </motion.div>
